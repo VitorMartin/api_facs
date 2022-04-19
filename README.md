@@ -6,14 +6,14 @@ API para identificação de expressões faciais
 
 ### Autores:
 
-- Bruna Galastri Guedes
+- [Bruna Galastri Guedes](https://github.com/MsBlueberry58)
 
-- Daniel Ughini Xavier
+- [Daniel Ughini Xavier](https://github.com/Daniel-Xavier)
 
-- Rodolfo Cochi Bezerra
+- [Rodolfo Cochi Bezerra](https://github.com/Rodolfo-Cochi)
 
-- Vitor Martin Simoni
+- [Vitor Martin Simoni](https://github.com/VitorMartin)
 
 ### Orientador:
 
-- Murilo Zanini de Carvalho
+- [Murilo Zanini de Carvalho](https://github.com/Murilo-ZC)
