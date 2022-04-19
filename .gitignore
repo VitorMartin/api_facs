@@ -1,0 +1,12 @@
+# Environments
+.vscode
+.idea
+venv
+
+# Compilations
+__pycache__
+.pytest_cache
+*.pyc
+
+# Notebooks
+.ipynb_checkpoints
