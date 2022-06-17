@@ -10,8 +10,6 @@ from src.api.options import setup_options
 app = Sanic(name=config.HOST)
 app.register_listener(setup_options, 'before_server_start')
 app.register_middleware(add_cors_headers, 'response')
-app.static('/files', os.path.join(config.ROOT_DIR, '..', 'mock_data'), name='mock')
-print(app.url_for('mock'))
 
 
 @app.get('/')
