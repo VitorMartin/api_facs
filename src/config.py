@@ -1,7 +1,7 @@
 import os
 
 
-API_NAME = 'API FACS'
+API_NAME = 'API_FACS'
 VERSION = '0.0'
 
 PROTOCOL = 'http'
