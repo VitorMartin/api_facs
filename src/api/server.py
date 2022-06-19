@@ -25,7 +25,11 @@ class Server:
         @self.app.post('/feeling')
         async def get_feeling_handler(req: Request):
             return response.json({
-                'joy': [6, 12],
+                'feeling': 'joy',
+                'action_units': ['AU6', 'AU12'],
+                'model_used': 'modelo_1',
+                'accuracy': .9051,
+                'avg_predict_time': 1051
             })
 
 
@@ -40,31 +44,36 @@ class Server:
         @self.app.get('/feeling/all')
         async def get_all_handler(req: Request):
             return response.json({
-                'anger': [4, 5, 7, 23],
-                'contempt': [12, 14],
-                'disgust': [9, 15, 16],
-                'fear': [1, 2, 4, 5, 7, 20, 26],
-                'joy': [6, 12],
-                'sadness': [1, 4, 15],
-                'surprise': [1, 2, 5, 26],
+                'anger': ['AU4', 'AU5', 'AU7', 'AU23'],
+                'contempt': ['AU12', 'AU14'],
+                'disgust': ['AU9', 'AU15', 'AU16'],
+                'fear': ['AU1', 'AU2', 'AU4', 'AU5', 'AU7', 'AU20', 'AU26'],
+                'joy': ['AU6', 'AU12'],
+                'sadness': ['AU1', 'AU4', 'AU15'],
+                'surprise': ['AU1', 'AU2', 'AU5', 'AU26'],
             })
 
 
         @self.app.get('/models')
         async def get_model_handler(req: Request):
             return response.json({
-                'modelo_1': {
-                    'accuracy': 0.9051,
-                    'avg_predict_time': 1051,
-                },
-                'modelo_2': {
-                    'accuracy': 0.9733,
-                    'avg_predict_time': 2496,
-                },
-                'modelo_3': {
-                    'accuracy': 0.8522,
-                    'avg_predict_time': 4754,
-                }
+                'models': [
+                    {
+                        'nome': 'model_1',
+                        'accuracy': 0.9051,
+                        'avg_predict_time': 1051,
+                    },
+                    {
+                        'nome': 'model_2',
+                        'accuracy': 0.9733,
+                        'avg_predict_time': 2496,
+                    },
+                    {
+                        'nome': 'model_3',
+                        'accuracy': 0.8522,
+                        'avg_predict_time': 4754,
+                    }
+                ]
             })
 
 
