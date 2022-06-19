@@ -1,5 +1,5 @@
 # ./src/api/server.py
-import config
+import src.config as config
 import os
 
 from sanic import Sanic, response, Request
@@ -33,7 +33,7 @@ class Server:
             })
 
 
-        @self.app.post('/feeling/image')
+        @self.app.post('/feeling/img')
         async def post_image_handler(req: Request):
             return await response.file(
                 os.path.join(config.MOCK_DIR, 'face_predict_placeholder_1.jpg'),
