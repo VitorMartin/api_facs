@@ -3,8 +3,7 @@ import config
 import os
 
 from sanic import Sanic, response, Request
-from src.api.cors import add_cors_headers
-from src.api.options import setup_options
+from sanic_cors import CORS
 
 
 class Server:
@@ -13,8 +12,7 @@ class Server:
 
     def __init__(self):
         self.app = Sanic(name=config.API_NAME)
-        self.app.register_listener(setup_options, 'before_server_start')
-        self.app.register_middleware(add_cors_headers, 'response')
+        CORS(self.app)
 
 
         @self.app.get('/')
