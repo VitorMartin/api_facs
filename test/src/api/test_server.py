@@ -1,16 +1,18 @@
 import pytest
-import src.config as config
 
+from src.config import Config
 from src.api.server import Server
 
 
 class Test_Server:
-    @pytest.fixture
+    @pytest.fixture(scope='class')
     def app(self):
-        return Server().app
+        return Server(config=Config(env=Config.AVAILABLE_ENV_TEST)).app
 
     @pytest.mark.asyncio
     async def test_get_home(self, app):
+        config = Config(env=Config.AVAILABLE_ENV_TEST)
+
         # Actual
         req, res = await app.asgi_client.get("/")
 

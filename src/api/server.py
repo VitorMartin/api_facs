@@ -1,7 +1,7 @@
 # ./src/api/server.py
-import src.config as config
 import os
 
+from src.config import Config
 from sanic import Sanic, response, Request
 from sanic_cors import CORS
 
@@ -10,14 +10,15 @@ class Server:
     app: Sanic
 
 
-    def __init__(self):
-        self.app = Sanic(name=config.API_NAME)
+    def __init__(self, config: Config = None):
+        self.config = Config() if config is None else config
+        self.app = Sanic(name=self.config.API_NAME)
         CORS(self.app)
 
 
         @self.app.get('/')
         async def get_home_handler(req: Request):
-            res = config.to_dict()
+            res = self.config.to_dict()
             res['msg'] = 'Welcome to our FACS API!'
             return response.json(res)
 
@@ -36,7 +37,7 @@ class Server:
         @self.app.post('/feeling/img')
         async def post_image_handler(req: Request):
             return await response.file(
-                os.path.join(config.MOCK_DIR, 'face_predict_placeholder_1.jpg'),
+                os.path.join(self.config.MOCK_DIR, 'face_predict_placeholder_1.jpg'),
                 filename='img_predict.jpg'
             )
 
@@ -77,5 +78,12 @@ class Server:
             })
 
 
-    def run(self, host: str = config.HOST, port: int = config.PORT):
-        self.app.run(host=host, port=port)
+    def run(self, host: str = None, port: int = None):
+        host = self.config.HOST if host is None else host
+        port = self.config.PORT if port is None else port
+
+        self.app.run(
+            host=host,
+            port=port,
+            debug=True if self.config.ENV == Config.AVAILABLE_ENV_DEV else False
+        )
