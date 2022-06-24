@@ -6,11 +6,15 @@ from src.api.server import Server
 
 class Test_Server:
     @pytest.fixture(scope='class')
-    def app(self):
-        return Server(config=Config(env=Config.AVAILABLE_ENV_TEST)).app
+    def server(self):
+        return Server(config=Config(env=Config.AVAILABLE_ENV_TEST))
+
+    @pytest.fixture(scope='class')
+    def app(self, server):
+        return server.app
 
     @pytest.mark.asyncio
-    async def test_get_home(self, app):
+    async def test_get_home(self, server, app):
         config = Config(env=Config.AVAILABLE_ENV_TEST)
 
         # Actual

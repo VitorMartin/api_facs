@@ -17,14 +17,15 @@ class Config:
         )
         self.parser.add_argument('--port', '-p', help='Port for the API host.')
         if env in [self.AVAILABLE_ENV_PROD, self.AVAILABLE_ENV_DEV]:
-            self.args = self.parser.parse_args([])
+            self.args = self.parser.parse_args()
         elif env == self.AVAILABLE_ENV_TEST:
-            self.args = self.parser.parse_args([])
+            self.parser.add_argument('src')
+            self.args = self.parser.parse_args()
 
         self.API_NAME = 'API_FACS'
 
         self.PROTOCOL = 'http'
-        self.HOST = 'localhost'
+        self.HOST = '127.0.0.1'
 
         self.PORT = '8000' if self.args.port is None else self.args.port
 
