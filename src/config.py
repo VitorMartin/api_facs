@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 
 
 class Config:
@@ -8,6 +9,7 @@ class Config:
     AVAILABLE_ENV_TEST = 'test'
 
     def __init__(self, env: str = AVAILABLE_ENV_PROD):
+        print(sys.argv)
         self.VERSION = '0.0'
         self.ENV = env
 
@@ -19,7 +21,8 @@ class Config:
         if env in [self.AVAILABLE_ENV_PROD, self.AVAILABLE_ENV_DEV]:
             self.args = self.parser.parse_args()
         elif env == self.AVAILABLE_ENV_TEST:
-            self.parser.add_argument('src')
+            if '_jb_pytest_runner.py' in sys.argv[0]:  # Checking how the test is being called
+                self.parser.add_argument('src')
             self.args = self.parser.parse_args()
 
         self.API_NAME = 'API_FACS'
