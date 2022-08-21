@@ -3,7 +3,7 @@ import numpy as np
 import dlib
 cap = cv2.VideoCapture(0)
 detector = dlib.get_frontal_face_detector()
-predictor = dlib.shape_predictor('./notebooks/landmarks/shape_predictor_68_face_landmarks.dat')  # Mudar para nome do arquivo que tem os pontos que queremos marcar na face
+predictor = dlib.shape_predictor('./notebooks/landmarks/data/shape_predictor_68_face_landmarks.dat')  # Mudar para nome do arquivo que tem os pontos que queremos marcar na face
 
 # Loop que matem ativo processamento de imagem para do video, ja que o OPENCV trabalha frame a frame (como se fosse varias imagens)
 while True:
