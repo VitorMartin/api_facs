@@ -60,4 +60,4 @@ while(cap.isOpened()):
 
     cv2.waitKey(WEBCAM_PERIOD)
     cv2.imshow('frame', frame)
-    # cv2.imwrite('./notebooks/landmarks/results/landmarks_output_example.jpg', frame)
+#     cv2.imwrite('./notebooks/landmarks/results/landmarks_output_example.jpg', frame)
