@@ -1,3 +1,7 @@
+import os
+from sanic.response import json
+import numpy as np
+import cv2 as cv
 import pytest
 
 from src.config import Config
@@ -5,9 +9,12 @@ from src.api.server import Server
 
 
 class Test_Server:
+    config = Config(env=Config.AVAILABLE_ENV_TEST)
+
+
     @pytest.fixture(scope='class')
     def server(self):
-        return Server(config=Config(env=Config.AVAILABLE_ENV_TEST))
+        return Server(config=self.config)
 
     @pytest.fixture(scope='class')
     def app(self, server):
@@ -15,13 +22,11 @@ class Test_Server:
 
     @pytest.mark.asyncio
     async def test_get_home(self, server, app):
-        config = Config(env=Config.AVAILABLE_ENV_TEST)
-
         # Actual
         req, res = await app.asgi_client.get("/")
 
         # Expected
-        exp_res = config.to_dict()
+        exp_res = self.config.to_dict()
         exp_res['msg'] = 'Welcome to our FACS API!'
 
         # Test
@@ -32,24 +37,25 @@ class Test_Server:
     @pytest.mark.asyncio
     async def test_post_feeling(self, app):
         # Actual
-        req, res = await app.asgi_client.post("/feeling")
+        with open(os.path.join(self.config.ROOT_DIR, '..', 'mock_data', 'happy_placeholder_1.jpeg'), 'rb') as file:
+            img_bytes = file.read()
+        req, res = await app.asgi_client.post("/feeling", data=img_bytes)
+        act_res = res.json
 
         # Expected
         exp_res = {
-            "feeling": "joy",
+            "feeling": "happy",
             "action_units": [
-                "AU6",
-                "AU12"
+                999
             ],
-            "model_used": "modelo_1",
-            "accuracy": 0.9051,
-            "avg_predict_time": 1051
+            "feeling_accuracy": 100.0,
+            "predict_time": act_res['predict_time']
         }
 
         # Test
         assert req.method.lower() == "post"
         assert res.status == 200
-        assert res.json == exp_res
+        assert act_res == exp_res
 
     @pytest.mark.asyncio
     async def test_post_feeling_image(self, app):

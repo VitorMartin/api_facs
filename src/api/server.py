@@ -1,9 +1,12 @@
 # ./src/api/server.py
-import os
-
 from src.config import Config
+
+import os
 from sanic import Sanic, response, Request
 from sanic_cors import CORS
+import cv2 as cv
+import numpy as np
+from time import time
 
 
 class Server:
@@ -25,13 +28,26 @@ class Server:
 
         @self.app.post('/feeling')
         async def get_feeling_handler(req: Request):
-            return response.json({
-                'feeling': 'joy',
-                'action_units': ['AU6', 'AU12'],
-                'model_used': 'modelo_1',
-                'accuracy': .9051,
-                'avg_predict_time': 1051
-            })
+            from deepface import DeepFace  # Importando localmente, para nao conflitar com Pytest
+
+            start_time = time()
+            img_arr = np.fromstring(req.body, np.uint8)
+            img_cv = cv.imdecode(img_arr, cv.IMREAD_COLOR)
+            df_predict = DeepFace.analyze(
+                img_cv,
+                actions=('emotion',),
+                models={'emotion': DeepFace.build_model('Emotion')}
+            )
+            feeling = df_predict['dominant_emotion']
+
+            predict_time = time() - start_time
+            res = {
+                'feeling': feeling,
+                'action_units': [999],
+                'feeling_accuracy': round(df_predict['emotion'][feeling], 2),
+                'predict_time': round(predict_time * 1000)
+            }
+            return response.json(res)
 
 
         @self.app.post('/feeling/img')
