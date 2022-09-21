@@ -6,8 +6,10 @@ from sanic import Sanic, response, Request
 from sanic_cors import CORS
 import cv2 as cv
 import numpy as np
+from keras.models import load_model
+from keras.utils import img_to_array
+from keras.utils.image_utils import smart_resize
 from time import time
-
 
 class Server:
     app: Sanic
@@ -33,6 +35,8 @@ class Server:
             start_time = time()
             img_arr = np.fromstring(req.body, np.uint8)
             img_cv = cv.imdecode(img_arr, cv.IMREAD_COLOR)
+
+            # Predict DeepFace
             df_predict = DeepFace.analyze(
                 img_cv,
                 actions=('emotion',),
@@ -40,12 +44,25 @@ class Server:
             )
             feeling = df_predict['dominant_emotion']
 
+            # Predict AUs
+            au_model = load_model(os.path.join(self.config.ROOT_DIR, 'au_detection_model.h5'))
+            img_keras = img_to_array(img_cv)
+            img_keras = np.expand_dims(img_keras, axis=0)
+            img_keras = smart_resize(img_keras, (self.config.AU_MODEL_IMG_SIZE, self.config.AU_MODEL_IMG_SIZE))
+            prediction = au_model.predict(img_keras)[0]
+            mean = prediction.mean()
+            std = prediction.std()
+            prediction_classes = np.where(prediction > mean + std)[0]
+            aus = {}
+            for pred in prediction_classes:
+                aus[int(pred)] = float(prediction[pred])
+
             predict_time = time() - start_time
             res = {
                 'feeling': feeling,
-                'action_units': [999],
+                'action_units': aus,
                 'feeling_accuracy': round(df_predict['emotion'][feeling], 2),
-                'predict_time': round(predict_time * 1000)
+                'predict_time': round(predict_time * 1000),
             }
             return response.json(res)
 

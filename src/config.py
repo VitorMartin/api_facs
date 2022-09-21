@@ -37,6 +37,8 @@ class Config:
             self.ROOT_DIR, '..', 'mock_data'
         )
 
+        self.AU_MODEL_IMG_SIZE = 224
+
 
     def to_dict(self):
         return {
@@ -46,4 +48,5 @@ class Config:
             'protocol': self.PROTOCOL,
             'host': self.HOST,
             'port': self.PORT,
+            'au_model_img_size': self.AU_MODEL_IMG_SIZE,
         }
