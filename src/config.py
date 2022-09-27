@@ -39,6 +39,8 @@ class Config:
 
         self.AU_MODEL_IMG_SIZE = 224
 
+        self.FLASK_DEBUG = False if self.ENV == self.AVAILABLE_ENV_PROD else True
+
 
     def to_dict(self):
         return {
@@ -49,4 +51,5 @@ class Config:
             'host': self.HOST,
             'port': self.PORT,
             'au_model_img_size': self.AU_MODEL_IMG_SIZE,
+            'flask_debug': self.FLASK_DEBUG
         }
