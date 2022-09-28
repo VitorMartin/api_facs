@@ -6,4 +6,4 @@ fear,1 + 2 + 4 + 5 + 7 + 20 + 26,"Inner Brow Raiser, Outer Brow Raiser, Brow Low
 angry,4 + 5 + 7 + 23,"Brow Lowerer, Upper Lid Raiser, Lid Tightener, Lip Tightener"
 disgust,9 + 15 + 16,"Nose Wrinkler, Lip Corner Depressor, Lower Lip Depressor"
 contempt,12 + 14,"Lip Corner Puller, Dimpler"
-neutral,,
+neutral,,"No facial actions"
