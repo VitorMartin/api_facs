@@ -12,14 +12,10 @@ from flask import Flask, request, send_file, json
 from flask_api.status import *
 
 
-config = Config()
-app = Flask(config.API_NAME)
-handler = Handler(config)
-print(f'Python version: {sys.version_info}')
-print(config.to_dict())
+def create_app(config: Config, handler: Handler):
+    app = Flask(config.API_NAME)
 
 
-def create_app():
     @app.route('/', methods=['GET'])
     def get_home_endpoint():
         return handler.get_home_handler()
@@ -49,6 +45,13 @@ def create_app():
         return handler.get_feeling_all_handler()
 
 
+    return app
+
+
 if __name__ == '__main__':
-    create_app()
-    app.run(host=config.HOST, port=config.PORT, debug=config.FLASK_DEBUG)
+    _config = Config()
+    _handler = Handler(_config)
+    _app = create_app(_config, _handler)
+    print(f'Python version: {sys.version_info}')
+    print(_config.to_dict())
+    _app.run(host=_config.HOST, port=_config.PORT, debug=_config.FLASK_DEBUG)
