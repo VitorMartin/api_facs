@@ -17,7 +17,9 @@ class Config:
         self.parser.add_argument(
             '--version', '-v', action='version', version=self.VERSION, help='API\'s current version.'
         )
-        self.parser.add_argument('--port', '-p', help='Port for the API host.')
+        self.parser.add_argument(
+            '--port', '-p', help='Port for the API host.'
+        )
         if env in [self.AVAILABLE_ENV_PROD, self.AVAILABLE_ENV_DEV]:
             self.args = self.parser.parse_args()
         elif env == self.AVAILABLE_ENV_TEST:

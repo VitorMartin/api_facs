@@ -1,0 +1,9 @@
+﻿emotion,aus,description
+happy,6 + 12,"Cheek Raiser, Lip Corner Puller"
+sad,1 + 4 + 15,"Inner Brow Raiser, Brow Lowerer, Lip Corner Depressor"
+surprise,1 + 2 + 5 + 26,"Inner Brow Raiser, Outer Brow Raiser, Upper Lid Raiser, Jaw Drop"
+fear,1 + 2 + 4 + 5 + 7 + 20 + 26,"Inner Brow Raiser, Outer Brow Raiser, Brow Lowerer, Upper Lid Raiser, Lid Tightener, Lip Stretcher, Jaw Drop"
+angry,4 + 5 + 7 + 23,"Brow Lowerer, Upper Lid Raiser, Lid Tightener, Lip Tightener"
+disgust,9 + 15 + 16,"Nose Wrinkler, Lip Corner Depressor, Lower Lip Depressor"
+contempt,12 + 14,"Lip Corner Puller, Dimpler"
+neutral,,
