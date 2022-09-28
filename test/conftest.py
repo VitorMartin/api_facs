@@ -25,6 +25,13 @@ def img_bytes(config) -> bytes:
 
 
 @pytest.fixture(scope='module')
+def img_no_face_bytes(config) -> bytes:
+    with open(os.path.join(config.MOCK_DIR, 'face_placeholder_1.jpg'), 'rb') as file:
+        img_bytes = file.read()
+    yield img_bytes
+
+
+@pytest.fixture(scope='module')
 def client(config, handler) -> FlaskClient:
     app = create_app(config, handler)
     with app.test_client() as client:

@@ -111,3 +111,17 @@ class Test_Handler:
         # Test
         assert act_res.status_code == HTTP_200_OK
         assert act_res.json == exp_res
+
+
+class Test_Handler_Exceptions:
+    def test_post_feeling_no_face_detected(self, client: FlaskClient, img_no_face_bytes: bytes):
+        act_res = client.post(
+            '/feeling',
+            data=img_no_face_bytes,
+            mimetype='image/jpeg'
+        )
+        assert act_res.status_code == HTTP_400_BAD_REQUEST
+        assert act_res.json == {
+            'msg': 'Face could not be detected. Please confirm that the picture is a face photo '
+                   'or consider to set enforce_detection param to False.'
+        }

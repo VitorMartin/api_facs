@@ -30,7 +30,16 @@ def create_app(config: Config, handler: Handler):
                 mimetype='application/json'
             )
 
-        return handler.post_feeling_handler(request)
+        try:
+            res = handler.post_feeling_handler(request)
+        except ValueError as err:
+            return app.response_class(
+                response=json.dumps({'msg': err.args[0]}),
+                status=HTTP_400_BAD_REQUEST,
+                mimetype='application/json'
+            )
+
+        return res
 
 
     @app.route('/feeling/img', methods=['POST'])
