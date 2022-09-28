@@ -54,7 +54,7 @@ class Test_Endpoints:
         assert res.mimetype == 'application/json'
 
 
-class Test_Endpoints_Errors:
+class Test_Endpoints_Exceptions:
     def test_feeling_endpoint_bad_request(self, client: FlaskClient):
         res = client.post(
             '/feeling',
