@@ -10,12 +10,15 @@ class Config:
 
     def __init__(self, env: str = AVAILABLE_ENV_PROD):
         print(sys.argv)
-        self.VERSION = '0.0'
+
+        self.PYTHON_VERSION = sys.version.split(' ')[0]
+
+        self.API_VERSION = '0.0'
         self.ENV = env
 
         self.parser = argparse.ArgumentParser()
         self.parser.add_argument(
-            '--version', '-v', action='version', version=self.VERSION, help='API\'s current version.'
+            '--version', '-v', action='version', version=self.API_VERSION, help='API\'s current version.'
         )
         self.parser.add_argument(
             '--port', '-p', help='Port for the API host.'
@@ -47,11 +50,12 @@ class Config:
     def to_dict(self):
         return {
             'api_name': self.API_NAME,
+            'api_version': self.API_VERSION,
+            'au_model_img_size': self.AU_MODEL_IMG_SIZE,
             'env': self.ENV,
-            'version': self.VERSION,
-            'protocol': self.PROTOCOL,
+            'flask_debug': self.FLASK_DEBUG,
             'host': self.HOST,
             'port': self.PORT,
-            'au_model_img_size': self.AU_MODEL_IMG_SIZE,
-            'flask_debug': self.FLASK_DEBUG
+            'protocol': self.PROTOCOL,
+            'python_version': self.PYTHON_VERSION,
         }
