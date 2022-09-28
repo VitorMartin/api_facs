@@ -39,9 +39,11 @@ class Test_Endpoints:
         assert res.status_code == HTTP_200_OK
         assert res.mimetype == 'application/json'
 
-    def test_feeling_img_endpoint(self, client: FlaskClient):
+    def test_feeling_img_endpoint(self, client: FlaskClient, img_bytes: bytes):
         res = client.post(
-            '/feeling/img'
+            '/feeling/img',
+            data=img_bytes,
+            mimetype='image/jpeg'
         )
         assert res.status_code == HTTP_200_OK
         assert res.mimetype == 'image/jpeg'
