@@ -11,7 +11,13 @@ class Test_Environment:
         assert minor == '7'
 
     def test_config(self, config: Config):
-        assert config.to_dict() == {
+        # Actual
+        act_config = config.to_dict()
+        major, minor, patch = act_config['python_version'].split('.')
+        act_config['python_version'] = major + '.' + minor
+
+        # Expected
+        exp_config = {
             'api_name': 'API_FACS',
             'api_version': '0.0',
             'au_model_img_size': 224,
@@ -20,8 +26,11 @@ class Test_Environment:
             'host': '127.0.0.1',
             'port': '8000',
             'protocol': 'http',
-            'python_version': '3.7.9'
+            'python_version': '3.7'
         }
+
+        # Test
+        assert act_config == exp_config
 
 
 class Test_Endpoints:
