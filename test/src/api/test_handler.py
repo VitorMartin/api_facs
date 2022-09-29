@@ -31,17 +31,11 @@ class Test_Handler:
 
         # Expected
         exp_res = {
-            'aus': [
-                6,
-                12
-            ],
-            'aus_descriptions': {
-                '6': 'Cheek Raiser',
-                '12': 'Lip Corner Puller'
-            },
+            'aus': [6, 12],
+            'aus_descriptions': {'12': 'Lip corner puller', '6': 'Cheek raiser'},
             'feeling': 'happy',
             'feeling_accuracy': 100.0,
-            'feeling_description': 'Cheek Raiser, Lip Corner Puller',
+            'feeling_description': 'Cheek raiser and lip corner puller',
             'predict_time': 0
         }
 
@@ -68,43 +62,46 @@ class Test_Handler:
         # Expected
         exp_res = {
             'aus': [
-                1,   2,  4,  5,  6,  7,  9, 10, 11, 12,
-                13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-                23, 24, 25, 26, 27, 28, 29, 30, 31, 32,
-                33, 34, 35, 36, 37, 38, 39, 41, 42, 43,
-                44, 45, 46, 51, 52, 53, 54, 55, 56, 57,
-                58, 61, 62, 63, 64
+                0,   1,  2,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+                27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 50, 51, 52, 53, 54, 55,
+                56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 68, 69, 70, 71, 72, 73, 74, 80, 81, 82, 83, 84, 85, 91, 92,
+                97, 98
             ],
             'aus_descriptions': {
-                '1': 'Inner Brow Raiser', '2': 'Outer Brow Raiser', '4': 'Brow Lowerer', '5': 'Upper Lid Raiser',
-                '6': 'Cheek Raiser', '7': 'Lid Tightener', '9': 'Nose Wrinkler', '10': 'Upper Lip Raiser',
-                '11': 'Nasolabial Deepener', '12': 'Lip Corner Puller', '13': 'Cheek Puffer', '14': 'Dimpler',
-                '15': 'Lip Corner Depressor', '16': 'Lower Lip Depressor', '17': 'Chin Raiser', '18': 'Lip Puckerer',
-                '19': 'Língua para Fora', '20': 'Lip stretcher', '21': 'Endurecedor de Pescoço -- Platysma',
-                '22': 'Lip Funneler', '23': 'Lip Tightener', '24': 'Lip Pressor', '25': 'Lips part', '26': 'Jaw Drop',
-                '27': 'Mouth Stretch', '28': 'Lip Suck', '29': 'Projeção de Mandíbula',
-                '30': 'Movimentação Lateral da Mandíbula', '31': 'Jaw Clencher -- Masseter',
-                '32': 'Mordida do Lábio', '33': 'Inflar de Bochecha', '34': 'Bufar de Bochecha',
-                '35': 'Sucção de Bochecha', '36': 'Arqueamento da Língua', '37': 'Limpeza do Lábio',
-                '38': 'Dilatador das Narinas', '39': 'Compressor das Narinas', '41': 'Lid droop', '42': 'Slit',
-                '43': 'Eyes Closed', '44': 'Squint', '45': 'Blink', '46': 'Wink', '51': 'Head Turn Left',
-                '52': 'Head Turn Right', '53': 'Head Up', '54': 'Head Down', '55': 'Head Tilt Left',
-                '56': 'Head Tilt Right', '57': 'Head Forward', '58': 'Head Back', '61': 'Eyes Turn Left',
-                '62': 'Eyes Turn Right', '63': 'Eyes Up', '64': 'Eyes Down'
+                '0': 'Neutral face', '1': 'Inner brow raiser', '10': 'Upper lip raiser', '11': 'Nasolabial deepener',
+                '12': 'Lip corner puller', '13': 'Sharp lip puller', '14': 'Dimpler', '15': 'Lip corner depressor',
+                '16': 'Lower lip depressor', '17': 'Chin raiser', '18': 'Lip pucker', '19': 'Tongue show',
+                '2': 'Outer brow raiser', '20': 'Lip stretcher', '21': 'Neck tightener', '22': 'Lip funneler',
+                '23': 'Lip tightener', '24': 'Lip pressor', '25': 'Lips part', '26': 'Jaw drop', '27': 'Mouth stretch',
+                '28': 'Lip suck', '29': 'Jaw thrust', '30': 'Jaw sideways', '31': 'Jaw clencher', '32': 'Lip bite',
+                '33': 'Cheek blow', '34': 'Cheek puff', '35': 'Cheek suck', '36': 'Tongue bulge', '37': 'Lip wipe',
+                '38': 'Nostril dilator', '39': 'Nostril compressor', '4': 'Brow lowerer', '40': 'Sniff',
+                '41': 'Lid droop', '42': 'Slit', '43': 'Eyes closed', '44': 'Squint', '45': 'Blink', '46': 'Wink',
+                '5': 'Upper lid raiser', '50': 'Speech', '51': 'Head turn left', '52': 'Head turn right',
+                '53': 'Head up', '54': 'Head down', '55': 'Head tilt left', '56': 'Head tilt right',
+                '57': 'Head forward', '58': 'Head back', '59': 'Head shake up and down', '6': 'Cheek raiser',
+                '60': 'Head shake side to side', '61': 'Eyes turn left', '62': 'Eyes turn right', '63': 'Eyes up',
+                '64': 'Eyes down', '65': 'Walleye', '66': 'Cross-eye', '68': 'Upward rolling of eyes',
+                '69': 'Head or eyes look at other person', '7': 'Lid tightener', '70': 'Brows and forehead not visible',
+                '71': 'Eyes not visible', '72': 'Lower face not visible', '73': 'Entire face not visible',
+                '74': 'Unscorable', '8': 'Lips toward each other', '80': 'Swallow', '81': 'Chewing',
+                '82': 'Shoulder shrug', '83': 'Head upward and to the side', '84': 'Head shake back and forth',
+                '85': 'Head nod up and down', '9': 'Nose wrinkler', '91': 'Flash', '92': 'Partial flash',
+                '97': 'Shiver/tremble', '98': 'Fast up-down look'
             },
             'feelings': [
-                'happy', 'sad', 'surprise', 'fear', 'angry', 'disgust', 'contempt', 'neutral'
+                'angry', 'contempt', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise'
             ],
             'feelings_description': {
-                'angry': 'Brow Lowerer, Upper Lid Raiser, Lid Tightener, Lip Tightener',
-                'contempt': 'Lip Corner Puller, Dimpler',
-                'disgust': 'Nose Wrinkler, Lip Corner Depressor, Lower Lip Depressor',
-                'fear': 'Inner Brow Raiser, Outer Brow Raiser, Brow Lowerer, Upper Lid Raiser, Lid Tightener, '
-                        'Lip Stretcher, Jaw Drop',
-                'happy': 'Cheek Raiser, Lip Corner Puller',
-                'neutral': "No facial actions",
-                'sad': 'Inner Brow Raiser, Brow Lowerer, Lip Corner Depressor',
-                'surprise': 'Inner Brow Raiser, Outer Brow Raiser, Upper Lid Raiser, Jaw Drop'
+                'angry': 'Brow lowerer, upper lid raiser, lid tightener and lip tightener',
+                'contempt': 'Lip corner puller and dimpler',
+                'disgust': 'Nose wrinkler, lip corner depressor, ' 'lower lip depressor',
+                'fear': 'Inner brow raiser, outer brow raiser, brow lowerer, upper lid raiser, lid tightener, '
+                        'lip stretcher and jaw drop',
+                'happy': 'Cheek raiser and lip corner puller',
+                'neutral': 'Neutral face',
+                'sad': 'Inner brow raiser, brow lowerer and lip ' 'corner depressor',
+                'surprise': 'Inner brow raiser, outer brow raiser, ' 'upper lid raiser and jaw drop'
             }
         }
 
