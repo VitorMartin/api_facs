@@ -43,10 +43,16 @@ def create_app(config: Config, handler: Handler):
 
 
     @app.route('/feeling/img', methods=['POST'])
-    def post_image_endpoint():
-        return send_file(
-            handler.post_feeling_image_handler()
-        )
+    def post_felling_image_endpoint():
+        try:
+            img_filename = handler.post_feeling_image_handler(request)
+        except Exception as err:
+            return app.response_class(
+                response=json.dumps({'msg': err.args[0]}),
+                status=HTTP_400_BAD_REQUEST,
+                mimetype='application/json'
+            )
+        return send_file(img_filename)
 
 
     @app.route('/feeling/all', methods=['GET'])
