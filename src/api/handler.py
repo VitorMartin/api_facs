@@ -1,13 +1,10 @@
 # ./src/api/server.py
-import os
-
 from src.api.data.aus_decoder import Aus_Decoder
 from src.config import Config
 
+import os
 import cv2 as cv
 import numpy as np
-import struct
-
 
 from time import time
 
@@ -28,7 +25,6 @@ class Handler:
         start_time = time()
 
         img_arr = np.frombuffer(req.data, dtype=np.uint8)
-
         img_cv = cv.imdecode(img_arr, cv.IMREAD_COLOR)
 
         # Predict DeepFace

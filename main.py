@@ -16,32 +16,29 @@ def create_app(config: Config, handler: Handler):
     app = Flask(config.API_NAME)
     CORS(app)
 
-
     @app.route('/', methods=['GET'])
     def get_home_endpoint():
         return handler.get_home_handler()
 
-
     @app.route('/feeling', methods=['POST'])
     def post_feeling_endpoint():
-        #if not request.mimetype.startswith('image/'):
-      #      return app.response_class(
-       #         response=json.dumps({'msg': 'Invalid MIME type provided. Send an image file instead.'}),
-      #          status=HTTP_400_BAD_REQUEST,
-  #              mimetype='application/json'
- #           )
-
-        #try:
+        # if not request.mimetype.startswith('image/'):
+        #     return app.response_class(
+        #         response=json.dumps({'msg': 'Invalid MIME type provided. Send an image file instead.'}),
+        #         status=HTTP_400_BAD_REQUEST,
+        #         mimetype='application/json'
+        #     )
+        #
+        # try:
         res = handler.post_feeling_handler(request)
-        #except ValueError as err:
-           # return app.response_class(
-         #       response=json.dumps({'msg': err.args[0]}),
-     #           status=HTTP_400_BAD_REQUEST,
-     #           mimetype='application/json'
-         #   )
+        # except ValueError as err:
+        #     return app.response_class(
+        #         response=json.dumps({'msg': err.args[0]}),
+        #         status=HTTP_400_BAD_REQUEST,
+        #         mimetype='application/json'
+        #     )
 
         return res
-
 
     @app.route('/feeling/img', methods=['POST'])
     def post_felling_image_endpoint():
@@ -55,11 +52,9 @@ def create_app(config: Config, handler: Handler):
             )
         return send_file(img_filename)
 
-
     @app.route('/feeling/all', methods=['GET'])
     def get_feeling_all():
         return handler.get_feeling_all_handler()
-
 
     return app
 
