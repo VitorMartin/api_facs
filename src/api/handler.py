@@ -6,6 +6,8 @@ from src.config import Config
 
 import cv2 as cv
 import numpy as np
+import struct
+
 
 from time import time
 
@@ -26,6 +28,7 @@ class Handler:
         start_time = time()
 
         img_arr = np.frombuffer(req.data, dtype=np.uint8)
+
         img_cv = cv.imdecode(img_arr, cv.IMREAD_COLOR)
 
         # Predict DeepFace
@@ -48,6 +51,7 @@ class Handler:
             'feeling_accuracy': round(df_predict['emotion'][feeling], 2),
             'predict_time': round(predict_time * 1000),
             **aus_payload,
+            'image': f'{list(req.data)}'
         }
 
         return res

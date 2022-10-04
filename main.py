@@ -2,7 +2,7 @@
 Modulo main. Ponto de entrada para a aplicação.
 """
 
-
+from flask_cors import CORS
 from src.config import Config
 from src.api.handler import Handler
 
@@ -14,6 +14,7 @@ from flask_api.status import *
 
 def create_app(config: Config, handler: Handler):
     app = Flask(config.API_NAME)
+    CORS(app)
 
 
     @app.route('/', methods=['GET'])
@@ -23,21 +24,21 @@ def create_app(config: Config, handler: Handler):
 
     @app.route('/feeling', methods=['POST'])
     def post_feeling_endpoint():
-        if not request.mimetype.startswith('image/'):
-            return app.response_class(
-                response=json.dumps({'msg': 'Invalid MIME type provided. Send an image file instead.'}),
-                status=HTTP_400_BAD_REQUEST,
-                mimetype='application/json'
-            )
+        #if not request.mimetype.startswith('image/'):
+      #      return app.response_class(
+       #         response=json.dumps({'msg': 'Invalid MIME type provided. Send an image file instead.'}),
+      #          status=HTTP_400_BAD_REQUEST,
+  #              mimetype='application/json'
+ #           )
 
-        try:
-            res = handler.post_feeling_handler(request)
-        except ValueError as err:
-            return app.response_class(
-                response=json.dumps({'msg': err.args[0]}),
-                status=HTTP_400_BAD_REQUEST,
-                mimetype='application/json'
-            )
+        #try:
+        res = handler.post_feeling_handler(request)
+        #except ValueError as err:
+           # return app.response_class(
+         #       response=json.dumps({'msg': err.args[0]}),
+     #           status=HTTP_400_BAD_REQUEST,
+     #           mimetype='application/json'
+         #   )
 
         return res
 
