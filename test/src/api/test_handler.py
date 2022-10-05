@@ -23,7 +23,7 @@ class Test_Handler:
         act_res = client.post(
             '/feeling',
             data=img_bytes,
-            mimetype='image/jpeg'
+            mimetype='image/jpg'
         )
         act_json = act_res.json
 

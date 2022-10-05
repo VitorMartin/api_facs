@@ -19,7 +19,7 @@ def handler(config) -> Handler:
 
 @pytest.fixture(scope='module')
 def img_bytes(config) -> bytes:
-    with open(os.path.join(config.MOCK_DIR, 'happy_placeholder_1.jpeg'), 'rb') as file:
+    with open(os.path.join(config.MOCK_DIR, 'happy_placeholder_1.jpg'), 'rb') as file:
         img_bytes = file.read()
     yield img_bytes
 
