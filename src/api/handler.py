@@ -58,7 +58,7 @@ class Handler:
             'feeling_accuracy': round(df_predict['emotion'][feeling], 2),
             'predict_time': round(predict_time * 1000),
             **aus_payload,
-            'image': f'{img_landmarks_list}'
+            'image': str({img_landmarks_list})
         }
 
         return res
