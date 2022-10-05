@@ -12,5 +12,3 @@ __pycache__
 # Notebooks
 .ipynb_checkpoints
 notebooks/au_detection/data/mmi
-/src/api/data/tmp/*
-!/src/api/data/tmp/.gitkeep

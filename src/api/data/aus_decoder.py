@@ -98,5 +98,4 @@ class Aus_Decoder:
                 y = int(pt1.y * height)
                 cv.circle(img_cv, (x, y), 5, (100, 100, 0), -1)
                 cv.putText(img_cv, str(ldmk), (x, y), 1, 1, (0, 0, 0))
-            print(type(img_cv))
             return img_cv

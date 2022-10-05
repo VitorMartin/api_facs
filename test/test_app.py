@@ -1,5 +1,3 @@
-import pytest
-
 from src.config import Config
 
 from flask_api.status import *
@@ -50,15 +48,6 @@ class Test_Endpoints:
         assert res.status_code == HTTP_200_OK
         assert res.mimetype == 'application/json'
 
-    def test_feeling_img_endpoint(self, client: FlaskClient, img_bytes: bytes):
-        res = client.post(
-            '/feeling/img',
-            data=img_bytes,
-            mimetype='image/jpeg'
-        )
-        assert res.status_code == HTTP_200_OK
-        assert res.mimetype == 'image/jpeg'
-
     def test_feeling_all_endpoint(self, client: FlaskClient):
         res = client.get('/feeling/all')
         assert res.status_code == HTTP_200_OK
@@ -66,7 +55,6 @@ class Test_Endpoints:
 
 
 class Test_Endpoints_Exceptions:
-    @pytest.mark.skip(reason="Fix front-end compatibility before testing edge cases.")
     def test_feeling_endpoint_bad_request(self, client: FlaskClient):
         res = client.post(
             '/feeling',
