@@ -54,3 +54,5 @@ if __name__ == '__main__':
     print(f'Python version: {sys.version_info}')
     print(_config.to_dict())
     _app.run(host=_config.HOST, port=_config.PORT, debug=_config.FLASK_DEBUG)
+
+    
