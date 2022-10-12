@@ -43,13 +43,8 @@ class Handler:
         # Draw AUs
         landmarks = aus_decoder.get_landmarks_from_aus(aus)
         img_landmarks = aus_decoder.get_feeling_img(img_cv, landmarks)
-        if img_landmarks is None:
-            img_landmarks_list = []
-        else:
-            img_landmarks_list = list(np.frombuffer(
-                img_landmarks,
-                dtype=np.uint8
-            ))
+        # Transforming into image
+        img_converted = cv.imencode('.jpg', img_landmarks)[1]
 
         predict_time = time() - start_time
 
@@ -58,7 +53,7 @@ class Handler:
             'feeling_accuracy': round(df_predict['emotion'][feeling], 2),
             'predict_time': round(predict_time * 1000),
             **aus_payload,
-            'image': str(img_landmarks_list)
+            'image': str(list(img_converted))
         }
 
         return res
