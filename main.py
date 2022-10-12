@@ -47,10 +47,15 @@ def create_app(config: Config, handler: Handler):
     return app
 
 
-if __name__ == '__main__':
-    _config = Config()
-    _handler = Handler(_config)
-    _app = create_app(_config, _handler)
+# ==== MAIN ==== #
+def main():
+    config = Config()
+    handler = Handler(config)
+    app = create_app(config, handler)
     print(f'Python version: {sys.version_info}')
-    print(_config.to_dict())
-    _app.run(host=_config.HOST, port=_config.PORT, debug=_config.FLASK_DEBUG)
+    print(config.to_dict())
+    app.run(host=config.HOST, port=config.PORT, debug=config.FLASK_DEBUG)
+
+
+if __name__ == '__main__':
+    main()
