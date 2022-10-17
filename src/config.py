@@ -23,6 +23,10 @@ class Config:
         self.parser.add_argument(
             '--port', '-p', help='Port for the API host.'
         )
+        # Host option can't be "-h" because it is being used by the "--help" argument
+        self.parser.add_argument(
+            '--host', '-H', help='IP to host the API.'
+        )
         if env in [self.AVAILABLE_ENV_PROD, self.AVAILABLE_ENV_DEV]:
             self.args = self.parser.parse_args()
         elif env == self.AVAILABLE_ENV_TEST:
@@ -33,8 +37,7 @@ class Config:
         self.API_NAME = 'API_FACS'
 
         self.PROTOCOL = 'http'
-        self.HOST = '127.0.0.1'
-
+        self.HOST = '127.0.0.1' if self.args.host is None else self.args.host
         self.PORT = '8000' if self.args.port is None else self.args.port
 
         self.ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
