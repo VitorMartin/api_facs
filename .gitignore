@@ -12,3 +12,4 @@ __pycache__
 # Notebooks
 .ipynb_checkpoints
 notebooks/au_detection/data/mmi
+notebooks/au_detection/data/images
