@@ -13,3 +13,4 @@ __pycache__
 .ipynb_checkpoints
 notebooks/au_detection/data/mmi
 notebooks/au_detection/data/images
+notebooks/au_detection/images
