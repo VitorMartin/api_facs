@@ -17,3 +17,10 @@ API para identificação de expressões faciais
 ### Orientador:
 
 - [Murilo Zanini de Carvalho](https://github.com/Murilo-ZC)
+
+
+## Docker
+
+**Build:** ```docker build -t api_facs .```
+
+**Run:** ```docker run -p 80:80 api_facs```

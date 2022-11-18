@@ -13,7 +13,7 @@ class Config:
 
         self.PYTHON_VERSION = sys.version.split(' ')[0]
 
-        self.API_VERSION = '0.0'
+        self.API_VERSION = '1.0'
         self.ENV = env
 
         self.parser = argparse.ArgumentParser()
@@ -37,8 +37,8 @@ class Config:
         self.API_NAME = 'API_FACS'
 
         self.PROTOCOL = 'http'
-        self.HOST = '127.0.0.1' if self.args.host is None else self.args.host
-        self.PORT = '8000' if self.args.port is None else self.args.port
+        self.HOST = '0.0.0.0' if self.args.host is None else self.args.host
+        self.PORT = '80' if self.args.port is None else self.args.port
 
         self.ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
         self.MOCK_DIR = os.path.join(

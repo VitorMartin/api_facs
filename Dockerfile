@@ -1,10 +1,16 @@
-FROM python:3.8-slim-buster
+FROM python:3.7-slim-buster
 
-WORKDIR /main
+RUN apt-get update -y
+RUN apt-get upgrade -y
+RUN apt-get install -y curl ffmpeg libsm6 libxext6
 
+WORKDIR ./app
 COPY requirements.txt requirements.txt 
-RUN pip3 install - r requirements.txt
+COPY ./main.py ./
+COPY ./src ./src
 
-COPY . .
+RUN pip3 install -r requirements.txt
 
-CMD [ "python3", "-m", "flask", "run", "--host=0.0.0.0"]
+EXPOSE 80
+
+CMD [ "python3", "-m", "main"]
