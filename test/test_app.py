@@ -19,7 +19,7 @@ class Test_Environment:
         # Expected
         exp_config = {
             'api_name': 'API_FACS',
-            'api_version': '1.0',
+            'api_version': '1.0.0',
             'au_model_img_size': 224,
             'env': 'test',
             'flask_debug': True,
