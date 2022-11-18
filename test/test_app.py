@@ -19,12 +19,12 @@ class Test_Environment:
         # Expected
         exp_config = {
             'api_name': 'API_FACS',
-            'api_version': '0.0',
+            'api_version': '1.0',
             'au_model_img_size': 224,
             'env': 'test',
             'flask_debug': True,
-            'host': '127.0.0.1',
-            'port': '8000',
+            'host': '0.0.0.0',
+            'port': '80',
             'protocol': 'http',
             'python_version': '3.7'
         }
