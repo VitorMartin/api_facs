@@ -13,7 +13,7 @@ class Config:
 
         self.PYTHON_VERSION = sys.version.split(' ')[0]
 
-        self.API_VERSION = '1.0'
+        self.API_VERSION = '1.0.0'
         self.ENV = env
 
         self.parser = argparse.ArgumentParser()
